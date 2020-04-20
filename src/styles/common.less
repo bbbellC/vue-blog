@@ -1,0 +1,404 @@
+@import './theme.less';
+
+#app {
+  height: 100%;
+  overflow: auto;
+  font-family: @family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: @back-color !important;
+}
+
+.layout {
+  // margin: 40px;
+  // padding: 40px;
+  // background-color: #fff;
+
+  .container {
+    margin: 2rem auto 0;
+    padding: 2rem;
+    background-color: #fff;
+
+    
+    .post-header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e8e8e8;
+
+      .flex-block {
+        display: flex;
+        align-items: center;
+      }
+
+      .author {
+        margin-right: 1rem;
+        font-size: 18px;
+      }
+
+      .icon-user {
+        margin: 10px;
+      }
+
+      .operate {
+        margin-left: 1rem;
+        color: @primary-color;
+
+        .btn {
+          margin: 0 5px;
+          cursor: pointer;
+
+          &:hover {
+            color: @light-primary;
+          }
+        }
+      }
+
+      .post-title {
+        color: #0d1a26;
+        font-size: 1.7em;
+        font-weight: 400;
+      }
+
+      .post-time {
+        color: @subsidiary-color;
+      }
+
+      .others {
+        a {
+          color: inherit;
+        }
+        vertical-align: middle;
+        margin-top: 10px;
+        color: rgba(0, 0, 0, 0.45);
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      width: 600px;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      width: 800px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      width: 1140px;
+    }
+  }
+
+  .alert-box {
+    display: inline-block;
+    margin-left: 1rem;
+
+    .ivu-icon {
+      margin-right: 0.2rem;
+      font-size: 16px;
+      color: @warning-color;
+    }
+
+    .text {
+      font-size: 12px;
+      color: rgba(81, 90, 110, .7);
+    }
+  }
+
+  .ways-container {
+    padding: 12px 24px;
+    border: 1px solid #ebedf0;
+    background: #fff;
+
+    .btn {
+      margin: 8px;
+      cursor: pointer;
+
+      &:hover, &.actived {
+        color: @primary-color;
+      }
+    }
+
+    .right {
+      float: right;
+    }
+  }
+}
+
+
+.simple-container {
+  .item {
+    position: relative;
+    border: 1px solid #ebedf0;
+    padding: 16px 24px;
+    background: #fff;
+    transition: all 0.2s linear;
+
+    &:hover {
+      background: rgba(217, 239, 236, 0.1);
+      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.05);
+      transform: translate3d(0, -5px 0);
+    }
+
+    .tip {
+      margin-right: .5rem;
+      color: @subsidiary-color;
+    }
+
+    .info {
+      width: auto;
+      height: 26px;
+      line-height: 26px;
+      padding: 0 5px;
+      display: inline-block;
+      margin-right: 12px;
+      border-radius: 3px;
+      text-align: center;
+      color: @primary-color;
+      background: @lighter-green;
+      border: 1px solid @light-green;
+
+      span {
+        display: block;
+        font-size: 12px;
+      }
+
+      &.actived {
+        color: #fff;
+        background: @light-primary;
+      }
+    }
+
+    .content {
+      display: inline-block;
+
+      .desc {
+        font-size: 12px;
+        color: @subsidiary-color;
+      }
+
+      .title {
+        a {
+          margin-right: 6px;
+          color: @title-color;
+          font-size: 16px;
+          text-overflow: ellipsis;
+          cursor: pointer;
+
+          &:hover {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+
+    .attr {
+      float: right;
+    }
+  }
+}
+
+
+.empty {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+
+.sider-btn {
+  display: block;
+  position: relative;
+  margin-bottom: .75rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 22px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.04);
+  cursor: pointer;
+
+  &:hover, &:active, &focus, &.actived {
+    background-color: @light-green;
+    box-shadow: 0 2px 4px 0 @lighter-green;
+  }
+
+  &::before {
+    position: relative;
+    top: 8px;
+  }
+}
+
+.sider {
+  position: fixed;
+  top: 12rem;
+  left: 4rem;
+  text-align: center;
+  
+  .number {
+    color: @subsidiary-color;
+  }
+
+  .like {
+    .btn {
+      .sider-btn();
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .sider {
+    left: 9rem;
+  }
+}
+
+
+.right-bottom {
+  position: fixed;
+  right: 3rem;
+  bottom: 1rem;
+
+  .btn {
+    .sider-btn();
+
+    text-align: center;
+    color: @subsidiary-color;
+
+    i {
+      position: relative;
+      top: 5px;
+    }
+  }
+
+  .ivu-poptip-popper {
+    min-width: 50px;
+  }
+}
+
+
+.ivu-btn-text:hover {
+  background: @background-color-base !important;
+}
+
+.ivu-dropdown-item:hover {
+  background: @background-color-base !important;
+}
+
+.ivu-alert {
+  display: inline-block;
+  top: 1px;
+  margin-left: 1rem;
+  margin-bottom: 0px;
+  padding-right: 20px;
+  line-height: 12px;
+  font-size: 12px;
+}
+
+
+
+.common-modal {
+  .tip {
+    margin: 0 8px 32px 0;
+    text-align: right;
+
+    .btn {
+      color: @primary-color;
+      cursor: pointer;
+    }
+  }
+
+  .ivu-modal {
+    top: 30%;
+
+    .ivu-modal-body {
+      padding-top: 32px;
+    }
+
+    .ivu-form-item {
+      margin-bottom: 32px;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    border-top: 1px solid #e8eaec;
+    margin: 0 -16px;
+    padding: 12px 18px 0 18px;
+
+    button {
+      flex: 1;
+      margin-left: 8px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.success, .warning {
+  .ivu-modal-body {
+    .text {
+      height: 8rem;
+      line-height: 8rem;
+      text-align: center;
+      font-size: 1.25rem;
+
+      .ivu-icon {
+        margin-right: 0.5rem;
+        font-size: 1.75rem;
+      }
+    }
+  }
+}
+
+.success {
+  .ivu-icon {
+    color: @success-color;
+  }
+}
+.warning {
+  .ivu-icon {
+    color: @warning-color;
+  }
+}
+
+.delete {
+  .ivu-modal-body {
+    font-size: 16px;
+  }
+
+  .tip {
+    margin-top: 20px;
+    margin-bottom: 42px;
+    text-align: center;
+  }
+
+  .ivu-btn-primary {
+    background-color: @error-color;
+    border-color: @error-color;
+
+    &:hover, &:active {
+      background-color: @light-error;
+      border-color: @light-error;
+    }
+  }
+}
+
+.underline {
+  cursor: pointer;
+
+  &:hover {
+    color: @primary-color;
+    text-decoration: underline;
+  }
+}
+
+.pagination {
+  float: right;
+  margin: 3rem 0;
+}

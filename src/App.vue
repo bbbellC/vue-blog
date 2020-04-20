@@ -1,28 +1,63 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" :style="isWhite ? 'background:#fff' : ''">
+    <Header v-if="show" />
+    <router-view class="layout" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import { mapState, mapActions } from 'vuex';
+  import Header from './components/header';
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+  export default {
+    name: 'app',
+    components: {
+      Header,
+    },
+    computed: {
+      ...mapState('common', ['isEditing']),
+      show () {
+        return !(this.$route.name === 'question' || this.$route.name === 'article');
+      },
+      isWhite () {
+        return this.$route.path === '/' || this.$route.path === '/courses';
+      },
+    },
+    created () {
+      this.updateUserInfo();
+    },
+    mounted () {
+      this.getAllTags();
+      this.getAllCourses();
+    },
+    updated () {
+      this.updateUserInfo();
+    },
+    methods: {
+      ...mapActions('tags', [
+        'getAllTags',
+        'getAllCourses',
+      ]),
+      ...mapActions('course', [
+        'getAllCourses',
+      ]),
+      updateUserInfo () {
+        if (localStorage.getItem('username')) {
+          const info = {
+            username: localStorage.getItem('username'),
+            token: localStorage.getItem('token'),
+            avatar: localStorage.getItem('avatar'),
+            major: localStorage.getItem('major'),
+            message: localStorage.getItem('message'),
+            code: 200,
+          };
+          this.$store.commit('user/setUserInfo', info);
+        }
+      },
+    },
+  };
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less">
+  @import './styles/index.less';
 </style>
